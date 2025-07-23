@@ -42,11 +42,11 @@ function reciclometro_exibir_banner() {
         }
     }
 
-    $total_formatado = number_format($total, 2, ',', '.');
+    $total_formatado = number_format($total, 0, ',', '.');
 
     return "<div class='reciclometro-banner'>
-                <h3>♻️ Papel Reciclado</h3>
-                <p><strong>{$total_formatado} kg</strong> já reciclados!</p>
+                <h3>♻️ Materiais Reciclados</h3>
+                <p><strong>{$total_formatado} kg</strong> já reciclados</p>
             </div>";
 }
 add_shortcode('reciclometro', 'reciclometro_exibir_banner');
@@ -59,7 +59,7 @@ function reciclometro_formulario_json() {
 
     $user = wp_get_current_user();
     $roles = (array) $user->roles;
-    if (!array_intersect($roles, ['administrator', 'editor', 'author'])) {
+    if (!array_intersect($roles, ['administrator', 'editor', 'author','assinante'])) {
         return '<p>🚫 Acesso restrito. Apenas administradores, editores e autores podem registrar reciclagem.</p>';
     }
 
